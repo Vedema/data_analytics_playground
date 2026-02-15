@@ -19,13 +19,13 @@
             overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* HERO */
         .hero {
             background: linear-gradient(135deg, #008cba, #005f73);
             color: white;
-            padding: 80px 20px;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
+            padding: 90px 20px;
+            border-bottom-left-radius: 60px;
+            border-bottom-right-radius: 60px;
             text-align: center;
         }
 
@@ -34,54 +34,69 @@
         }
 
         .hero p {
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
-        /* Section Card */
+        /* SECTION CARD */
         .section-card {
             background: white;
-            border-radius: 25px;
-            padding: 40px;
-            margin: 50px auto;
+            border-radius: 30px;
+            padding: 50px;
+            margin: 60px auto;
             max-width: 1100px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
             border: 2px solid #bde9f3;
         }
 
-        /* Section Titles */
+        /* SECTION TITLE */
         .section-title {
             color: #005f73;
             font-weight: 700;
             margin-bottom: 25px;
         }
 
-        /* Highlight Box */
+        /* HIGHLIGHT BOX */
         .highlight {
             background: #f0fbff;
             border-left: 6px solid #00a8cc;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 25px;
+            border-radius: 20px;
         }
 
-        /* Image Styling */
+        /* IMAGE WRAPPER */
+        .chart-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* IMAGE STYLE */
+        /* IMAGE STYLE */
         .chart-image {
             width: 100%;
-            border-radius: 20px;
+            max-width: 900px;
+            height: 420px;
+            object-fit: contain;
+            background: #f8fcff;
+            border-radius: 25px;
+            padding: 5px;
+            /* reduced from 20px */
+            cursor: pointer;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
         }
+
 
         .chart-image:hover {
-            transform: scale(1.03);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            transform: scale(1.02);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
         }
 
-        /* Buttons */
+        /* BUTTONS */
         .btn-custom {
             background-color: #008cba;
             color: white;
-            padding: 12px 30px;
-            border-radius: 40px;
+            padding: 14px 35px;
+            border-radius: 50px;
             font-weight: 600;
             border: none;
         }
@@ -90,10 +105,30 @@
             background-color: #005f73;
         }
 
+        /* FOOTER */
         .footer {
             text-align: center;
-            padding: 30px;
-            color: #005f73;
+            padding: 40px;
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: 25px;
         }
     </style>
 </head>
@@ -134,11 +169,12 @@
     <div class="section-card" data-aos="fade-up">
         <h3 class="section-title">📊 Role Distribution Analysis</h3>
 
-        <img src="/Projects/Screenshots/Staff Distribution by Role.png" class="chart-image mb-4">
+        <div class="chart-wrapper">
+            <img src="/Projects/Screenshots/Staff Distribution by Role.png" class="chart-image">
+        </div>
 
-        <div class="highlight">
+        <div class="highlight mt-4">
             A pivot table was created to summarise workforce composition by role.
-            The pie chart visualises proportional distribution across staff categories.
             <br><br>
             <strong>Insight:</strong> Care Assistants form the largest proportion,
             indicating heavy operational reliance on frontline staff.
@@ -149,14 +185,15 @@
     <div class="section-card" data-aos="fade-up">
         <h3 class="section-title">⏱ Overtime Analysis</h3>
 
-        <img src="/Projects/Screenshots/Overtime by Dept.png" class="chart-image mb-4">
+        <div class="chart-wrapper">
+            <img src="/Projects/Screenshots/Overtime by Dept.png" class="chart-image">
+        </div>
 
-        <div class="highlight">
-            Overtime hours were aggregated using SUM within a pivot table,
-            grouped by department.
+        <div class="highlight mt-4">
+            Overtime hours were aggregated using SUM within a pivot table.
             <br><br>
-            <strong>Insight:</strong> Certain departments demonstrate higher overtime,
-            suggesting potential workload imbalance.
+            <strong>Insight:</strong> Rehabilitation departments demonstrated higher overtime,
+            suggesting workload imbalance.
         </div>
     </div>
 
@@ -164,15 +201,16 @@
     <div class="section-card" data-aos="fade-up">
         <h3 class="section-title">⚠ Risk Flag Identification</h3>
 
-        <img src="/Projects/Screenshots/Staff at Risk.png" class="chart-image mb-4">
+        <div class="chart-wrapper">
+            <img src="/Projects/Screenshots/Staff at Risk.png" class="chart-image">
+        </div>
 
-        <div class="highlight">
-            A calculated column was created:
+        <div class="highlight mt-4">
+            Calculated column used:
             <br>
             <code>=IF(OR(AbsenceDays>=4, LateDays>=3),"At Risk","OK")</code>
             <br><br>
-            <strong>Insight:</strong> 57% percentage of staff were flagged as operational risk,
-            enabling proactive intervention.
+            <strong>Insight:</strong> 57% of staff were flagged as operational risk.
         </div>
     </div>
 
@@ -180,32 +218,55 @@
     <div class="section-card text-center" data-aos="fade-up">
         <h3 class="section-title">🖥 Full Interactive Dashboard</h3>
 
-        <img src="/Projects/Screenshots/Dashboard.png" class="chart-image mb-4">
+        <div class="chart-wrapper">
+            <img src="/Projects/Screenshots/Dashboard.png" class="chart-image">
+        </div>
 
-        <div class="highlight">
+        <div class="highlight mt-4">
             The final dashboard integrates KPIs, pivot tables, charts, and slicers
             into a clean, management-ready reporting interface.
         </div>
 
         <br>
-        <a href="files/CareWorkforceDashboard.xlsx" class="btn btn-custom">
+        <a href="dataset/Project1_CareWorkforce_Dashboard.xlsx" class="btn btn-custom">
             Download Excel Dashboard
         </a>
     </div>
 
     <!-- FOOTER -->
     <div class="footer">
-        <a href="index.html" class="btn btn-outline-primary rounded-pill">
+        <a href="/index.html" class="btn btn-outline-primary rounded-pill">
             Back to Portfolio
         </a>
     </div>
 
-    <!-- AOS Animation Script -->
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <img src="" id="lightbox-img">
+    </div>
+
+    <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
             duration: 1000,
             once: true
+        });
+
+        // Lightbox
+        const images = document.querySelectorAll('.chart-image');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
         });
     </script>
 
